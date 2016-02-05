@@ -46,6 +46,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
                 int position = holder.getAdapterPosition();
                 Log.d("MEMBER CLICKED", teamMembers.get(position).toString());
                 Intent intent = new Intent(v.getContext(), MemberActivity.class);
+                intent.putExtra("username", teamMembers.get(position).getUsername());
                 intent.putExtra("image", teamMembers.get(position).getProfile().getImage192());
                 intent.putExtra("name", teamMembers.get(position).getProfile().getRealName());
                 intent.putExtra("title", teamMembers.get(position).getProfile().getTitle());
