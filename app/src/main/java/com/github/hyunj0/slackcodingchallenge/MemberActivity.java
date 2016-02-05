@@ -14,6 +14,16 @@ public class MemberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        String image = getIntent().getStringExtra("image");
+        String name = getIntent().getStringExtra("name");
+        String title = getIntent().getStringExtra("title");
+        String email = getIntent().getStringExtra("email");
+        String timezone = getIntent().getStringExtra("timezone");
+        String color = getIntent().getStringExtra("color");
+
+        MemberFragment memberFragment = MemberFragment.newInstance(image, name, title, email, timezone, color);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, memberFragment).commit();
     }
 
     @Override
