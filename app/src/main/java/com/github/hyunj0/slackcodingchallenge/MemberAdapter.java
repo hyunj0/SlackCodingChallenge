@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,14 +36,13 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final MemberAdapter.ViewHolder holder, int position) {
         final Member teamMember = teamMembers.get(position);
-        holder.memberContainer.setBackgroundColor(Color.parseColor("#"+teamMember.getColor()));
+        holder.memberContainer.setBackgroundColor(Color.parseColor("#" + teamMember.getColor()));
         Picasso.with(context).load(teamMember.getProfile().getImage192()).into(holder.image);
         holder.username.setText(teamMember.getUsername());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Log.d("MEMBER CLICKED", teamMembers.get(position).toString());
                 Intent intent = new Intent(v.getContext(), MemberActivity.class);
                 intent.putExtra("username", teamMembers.get(position).getUsername());
                 intent.putExtra("image", teamMembers.get(position).getProfile().getImage192());
@@ -52,7 +50,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
                 intent.putExtra("title", teamMembers.get(position).getProfile().getTitle());
                 intent.putExtra("email", teamMembers.get(position).getProfile().getEmail());
                 intent.putExtra("timezone", teamMembers.get(position).getTz());
-                intent.putExtra("color", "#"+teamMembers.get(position).getColor());
+                intent.putExtra("color", "#" + teamMembers.get(position).getColor());
                 v.getContext().startActivity(intent);
             }
         });

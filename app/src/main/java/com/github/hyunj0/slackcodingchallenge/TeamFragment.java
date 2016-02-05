@@ -2,10 +2,12 @@ package com.github.hyunj0.slackcodingchallenge;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -61,7 +63,12 @@ public class TeamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_team, container, false);
         rv = (RecyclerView) v.findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        int screenSize = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        if (screenSize != Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        } else {
+            rv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        }
         rv.setHasFixedSize(true);
         return v;
     }

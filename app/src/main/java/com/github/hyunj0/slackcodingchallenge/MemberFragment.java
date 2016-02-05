@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.hyunj0.slackcodingchallenge.model.Member;
 import com.squareup.picasso.Picasso;
 
 public class MemberFragment extends Fragment {
@@ -31,19 +30,6 @@ public class MemberFragment extends Fragment {
 
     public MemberFragment() {
 
-    }
-
-    public static MemberFragment newInstance(Member teamMember) {
-        MemberFragment memberFragment = new MemberFragment();
-        Bundle args = new Bundle();
-        args.putString("image", teamMember.getProfile().getImage192());
-        args.putString("name", teamMember.getProfile().getRealName());
-        args.putString("title", teamMember.getProfile().getTitle());
-        args.putString("email", teamMember.getProfile().getEmail());
-        args.putString("timezone", teamMember.getTz());
-        args.putString("color", teamMember.getColor());
-        memberFragment.setArguments(args);
-        return memberFragment;
     }
 
     public static MemberFragment newInstance(String image, String name, String title, String email, String timezone, String color) {
